@@ -19,6 +19,10 @@ SELECT name,city
 FROM salesman
 WHERE city='Paris';
 
+SELECT COUNT(*) 
+FROM salesman 
+WHERE city IS NOT NULL;
+
 
 drop table ord
 create table ord(ord_no int,purch_amt decimal(8,2),ord_date date,customer_id int,salesman_id int)
@@ -56,6 +60,19 @@ FROM ord;
 SELECT customer_id,ord_date,MAX(purch_amt) 
 FROM ord 
 GROUP BY customer_id,ord_date;
+
+SELECT ord_date,salesman_id,COUNT(*) 
+FROM ord 
+GROUP BY ord_date,salesman_id;
+
+SELECT COUNT(*) 
+FROM ord
+WHERE ord_date='2012-08-17';
+
+SELECT salesman_id,MAX(purch_amt) 
+FROM ord
+GROUP BY salesman_id 
+HAVING salesman_id BETWEEN 5003 AND 5008;
 
 
 drop table customer
